@@ -12,7 +12,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:sqlite:/db/smoothie.db");
-        database.init();
 
         DaoAine daoAine = new DaoAine(database);
 
