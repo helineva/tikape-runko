@@ -11,7 +11,7 @@ import tikape.runko.database.OpiskelijaDao;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Database database = new Database("jdbc:sqlite:/db/smoothie.db");
+        Database database = new Database("jdbc:sqlite:db/smoothie.db");
 
         DaoAine daoAine = new DaoAine(database);
 
