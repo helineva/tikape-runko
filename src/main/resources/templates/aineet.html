@@ -7,13 +7,21 @@
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
+        <h2>Raaka-aineet</h2>
         
         <ul>
             <li>
                 <span>raaka-aineen nimi</span> <a>poista</a>
             </li>
         </ul>
+        
+        <h4>Lisää uusi raaka-aine</h4>
+        
+        <form method="POST" action="/lisaa">
+            Raaka-aineen nimi:<br/>
+            <input type="text" name="aine"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
 
     </body>
 </html>

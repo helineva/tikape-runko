@@ -25,9 +25,12 @@ public class Aine {
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
+<<<<<<< HEAD
     
     public String toString() {
         return "id: "+this.id+"nimi: "+this.nimi;
     }
+=======
+>>>>>>> 58902f2fa905beb91a3b37895f7bd8e7339eceb4
 
 }
