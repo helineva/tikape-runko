@@ -27,6 +27,12 @@ public class Main {
             return new ModelAndView(map, "aineet");
         }, new ThymeleafTemplateEngine());
         
+        get("/smoothiet", (req, res) -> {
+            HashMap map = new HashMap<>();
+            
+            return new ModelAndView(map, "smoothiet");
+        }, new ThymeleafTemplateEngine());
+        
         
         post("/aineet/lisaa", (req, res) -> {
             String nimi = req.queryParams("nimi");
