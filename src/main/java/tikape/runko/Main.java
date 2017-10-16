@@ -2,6 +2,7 @@ package tikape.runko;
 
 import java.util.HashMap;
 import spark.ModelAndView;
+import spark.Spark;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.DaoAine;
@@ -30,6 +31,12 @@ public class Main {
         post("/aineet/lisaa", (req, res) -> {
             String nimi = req.queryParams("nimi");
             daoAine.save(nimi);
+            res.redirect("/aineet");
+            return "";
+        });
+        
+        get("/aineet/:id/poista", (req, res) -> {
+            daoAine.delete(Integer.parseInt(req.params(":id")));
             res.redirect("/aineet");
             return "";
         });
