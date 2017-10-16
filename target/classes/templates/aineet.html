@@ -7,13 +7,21 @@
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
+        <h2>Raaka-aineet</h2>
         
         <ul>
-            <li>
-                <span>raaka-aineen nimi</span> <a>poista</a>
+            <li th:each="aine: ${aineet}">
+                <span th:text="${aine.nimi}">raaka-aineen nimi</span> <a th:href="${'/aineet/' + aine.id + '/poista'}">poista</a>
             </li>
         </ul>
+        
+        <h4>Lisää uusi raaka-aine</h4>
+        
+        <form method="POST" action="/aineet/lisaa">
+            Raaka-aineen nimi:<br/>
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
 
     </body>
 </html>

@@ -25,7 +25,15 @@ public class Main {
             map.put("aineet", daoAine.findAll());
             return new ModelAndView(map, "aineet");
         }, new ThymeleafTemplateEngine());
-
+        
+        
+        post("/aineet/lisaa", (req, res) -> {
+            String nimi = req.queryParams("nimi");
+            daoAine.save(nimi);
+            res.redirect("/aineet");
+            return "";
+        });
+        
 //        get("/opiskelijat", (req, res) -> {
 //            HashMap map = new HashMap<>();
 //            map.put("opiskelijat", opiskelijaDao.findAll());
