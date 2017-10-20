@@ -24,5 +24,27 @@ and open the template in the editor.
             <input type="text" name="nimi"/><br/>
             <input type="submit" value="Lisää"/>
         </form>
+        
+        <h4>Lisää raaka-aineita</h4>
+        
+        <form method="POST" action="/smoothiet/aineet/lisaa">
+            Smoothien nimi:<br/>
+            <select name="smoothie">
+                <option th:each="smoothie: ${smoothiet}" th:text="${smoothie.nimi}" th:value="${smoothie.id}">smoothie</option>
+            </select>
+            <br/>
+            Lisättävä raaka-aine<br/>
+            <select name="aine">
+                <option th:each="aine: ${aineet}" th:text="${aine.nimi}" th:value="${aine.id}">aine</option>
+            </select>
+            <br/>
+            Järjestys<br/>
+            <input name="jarjestys" type="text" /><br/>
+            Määrä<br/>
+            <input name="maara" type="text" /><br/>
+            Ohje<br/>
+            <input name="ohje" type="text" /><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
     </body>
 </html>

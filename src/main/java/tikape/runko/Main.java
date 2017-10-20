@@ -7,6 +7,7 @@ import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.DaoAine;
 import tikape.runko.database.DaoSmoothie;
+import tikape.runko.database.DaoSmoothieAine;
 import tikape.runko.database.Database;
 import tikape.runko.database.OpiskelijaDao;
 
@@ -17,6 +18,7 @@ public class Main {
 
         DaoAine daoAine = new DaoAine(database);
         DaoSmoothie daoSmoothie = new DaoSmoothie(database);
+        DaoSmoothieAine daoSmoothieAine = new DaoSmoothieAine(database);
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -32,6 +34,7 @@ public class Main {
         get("/smoothiet", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("smoothiet", daoSmoothie.findAll());
+            map.put("aineet", daoAine.findAll());
             return new ModelAndView(map, "smoothiet");
         }, new ThymeleafTemplateEngine());
         
@@ -52,6 +55,17 @@ public class Main {
         post("/smoothiet/lisaa", (req, res) -> {
             String nimi = req.queryParams("nimi");
             daoSmoothie.save(nimi);
+            res.redirect("/smoothiet");
+            return "";
+        });
+        
+        post("/smoothiet/aineet/lisaa", (req, res) -> {
+            Integer smoothieId = Integer.parseInt(req.queryParams("smoothie"));
+            Integer aineId = Integer.parseInt(req.queryParams("aine"));
+            Integer jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
+            String maara = req.queryParams("maara");
+            String ohje = req.queryParams("ohje");
+            daoSmoothieAine.save(aineId, smoothieId, jarjestys, maara, ohje);
             res.redirect("/smoothiet");
             return "";
         });
