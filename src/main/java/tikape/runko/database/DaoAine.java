@@ -43,6 +43,34 @@ public class DaoAine implements Dao<Aine, Integer>{
         return aine;
         
     }
+    
+        public List<Aine> findMany(Integer key) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT RaakaAine.nimi AS nimi FROM RaakaAine, SmoothieAine WHERE RaakaAine.id = ?"
+                + " AND SmoothieAine.aine_id = RaakaAine.id");
+        statement.setInt(1, key);
+        ResultSet rs = statement.executeQuery();
+        if(!rs.next()) {
+            return null;
+        }
+        ArrayList<Aine> aineet = new ArrayList<>();
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            String nimi = rs.getString("nimi");
+            aineet.add(new Aine(id, nimi));
+        }
+        
+        
+        
+        
+        rs.close();
+        statement.close();
+        connection.close();
+        
+        return aineet;
+        
+    }
+    
 
     @Override
     public List<Aine> findAll() throws SQLException {

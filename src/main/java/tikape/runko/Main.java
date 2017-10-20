@@ -80,6 +80,9 @@ public class Main {
            List<SmoothieAine> resepti = daoSmoothieAine.haeResepti(smoothieId);
            Smoothie smoothie = daoSmoothie.findOne(smoothieId);
            String smoothieNimi = smoothie.getNimi();
+           
+           map.put("aineet", daoSmoothieAine.haeResepti(smoothieId));
+           /*
            List<String> aineet = new ArrayList<>();
            List<String> maarat = new ArrayList<>();
            List<String> ohjeet = new ArrayList<>();
@@ -92,7 +95,13 @@ public class Main {
            map.put("smoothie", smoothieNimi);
            map.put("maarat", maarat);
            map.put("ohjeet", ohjeet);
-           return new ModelAndView(map, "smoothiet");
+           */
+           
+           
+           map.put("nimet", daoAine.findMany(smoothieId));
+           map.put("smoothie", smoothieNimi);
+           //map.put("aineet", map)
+           return new ModelAndView(map, "smoothie");
         }, new ThymeleafTemplateEngine());
         
     }

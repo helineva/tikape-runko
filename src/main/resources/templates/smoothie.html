@@ -7,10 +7,10 @@
     </head>
 
     <body>
-        <h1><span th:text="${smoothie.nimi}">smoothie</span></h1>
+        <h1><span th:text="${smoothie}">smoothie</span></h1>
          <ul>
-            <li th:each="aine: ${aineet}">
-                <span th:text="${aine.nimi}">raaka-aineen nimi</span>, <span th:text="${smoothieaine.maara}">maara</span>
+            <li th:each="smoothieaine: ${aineet}">
+                <span th:text="${smoothieaine.aineId}">raaka-aineen nimi</span>, <span th:text="${smoothieaine.maara}">maarat</span>, <span th:text="${smoothieaine.ohje}">ohjeet</span>
             </li>
         </ul>
         

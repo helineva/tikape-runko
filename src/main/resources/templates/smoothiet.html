@@ -13,7 +13,7 @@ and open the template in the editor.
         <h2>Smoothiet</h2>
             <ul>
             <li th:each="smoothie: ${smoothiet}">
-                <span th:text="${smoothie.nimi}">smoothien nimi</span> <a th:href="${'/smoothiet/' + smoothie.id + '/poista'}">poista</a>
+                <a th:href="${'/smoothiet/smoothie/' + smoothie.id}"> <span th:text="${smoothie.nimi}">smoothien nimi</span></a> <a th:href="${'/smoothiet/' + smoothie.id + '/poista'}">poista</a>
             </li>
         </ul>
         
