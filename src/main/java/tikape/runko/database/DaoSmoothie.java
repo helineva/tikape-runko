@@ -47,7 +47,7 @@ public class DaoSmoothie implements Dao<Smoothie, Integer>  {
     @Override
     public List<Smoothie> findAll() throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM RaakaAine");
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM Smoothie");
         ResultSet rs = statement.executeQuery();
         List<Smoothie> smoothiet = new ArrayList<>();
         if(!rs.next()) {
@@ -67,10 +67,10 @@ public class DaoSmoothie implements Dao<Smoothie, Integer>  {
         connection.close();
         return smoothiet;    
     }
-
+    
     public void save(String nimi) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO Smoothie(nimi) VALUES(?)");
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO Smoothie (nimi) VALUES (?)");
         statement.setString(1, nimi);
         statement.executeUpdate();
         statement.close();
