@@ -1,6 +1,8 @@
 package tikape.runko;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import spark.ModelAndView;
 import spark.Spark;
 import static spark.Spark.*;
@@ -10,6 +12,8 @@ import tikape.runko.database.DaoSmoothie;
 import tikape.runko.database.DaoSmoothieAine;
 import tikape.runko.database.Database;
 import tikape.runko.database.OpiskelijaDao;
+import tikape.runko.domain.Smoothie;
+import tikape.runko.domain.SmoothieAine;
 
 public class Main {
 
@@ -69,6 +73,27 @@ public class Main {
             res.redirect("/smoothiet");
             return "";
         });
+        
+        get("/smoothiet/smoothie/:id", (req, res) -> {
+           Integer smoothieId = Integer.parseInt(req.params(":id"));
+           HashMap map = new HashMap<>();
+           List<SmoothieAine> resepti = daoSmoothieAine.haeResepti(smoothieId);
+           Smoothie smoothie = daoSmoothie.findOne(smoothieId);
+           String smoothieNimi = smoothie.getNimi();
+           List<String> aineet = new ArrayList<>();
+           List<String> maarat = new ArrayList<>();
+           List<String> ohjeet = new ArrayList<>();
+           for (SmoothieAine smoothieAine : resepti) {
+               aineet.add(daoAine.findOne(smoothieAine.getAineId()).getNimi());
+               maarat.add(smoothieAine.getMaara());
+               ohjeet.add(smoothieAine.getOhje());
+           }
+           map.put("aineet", aineet);
+           map.put("smoothie", smoothieNimi);
+           map.put("maarat", maarat);
+           map.put("ohjeet", ohjeet);
+           return new ModelAndView(map, "smoothiet");
+        }, new ThymeleafTemplateEngine());
         
     }
 }
