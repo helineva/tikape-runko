@@ -42,6 +42,12 @@ public class Main {
             return new ModelAndView(map, "smoothiet");
         }, new ThymeleafTemplateEngine());
         
+        get("/smoothielista", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("smoothiet", daoSmoothie.findAll());
+            return new ModelAndView(map, "smoothielista");
+        }, new ThymeleafTemplateEngine());
+        
         
         post("/aineet/lisaa", (req, res) -> {
             String nimi = req.queryParams("nimi");
@@ -74,6 +80,12 @@ public class Main {
             return "";
         });
         
+        get("/smoothiet/:id/poista", (req, res) -> {
+            daoSmoothie.delete(Integer.parseInt(req.params(":id")));
+            res.redirect("/smoothiet");
+            return "";
+        });
+        
         get("/smoothiet/smoothie/:id", (req, res) -> {
            Integer smoothieId = Integer.parseInt(req.params(":id"));
            HashMap map = new HashMap<>();
@@ -82,25 +94,13 @@ public class Main {
            String smoothieNimi = smoothie.getNimi();
            
            map.put("aineet", daoSmoothieAine.haeResepti(smoothieId));
-           /*
-           List<String> aineet = new ArrayList<>();
-           List<String> maarat = new ArrayList<>();
-           List<String> ohjeet = new ArrayList<>();
+
+           List<String> aineidenNimet = new ArrayList<>();
            for (SmoothieAine smoothieAine : resepti) {
-               aineet.add(daoAine.findOne(smoothieAine.getAineId()).getNimi());
-               maarat.add(smoothieAine.getMaara());
-               ohjeet.add(smoothieAine.getOhje());
+               aineidenNimet.add(daoAine.findOne(smoothieAine.getAineId()).getNimi());
            }
-           map.put("aineet", aineet);
+           map.put("aineidenNimet", aineidenNimet);
            map.put("smoothie", smoothieNimi);
-           map.put("maarat", maarat);
-           map.put("ohjeet", ohjeet);
-           */
-           
-           
-           map.put("nimet", daoAine.findMany(smoothieId));
-           map.put("smoothie", smoothieNimi);
-           //map.put("aineet", map)
            return new ModelAndView(map, "smoothie");
         }, new ThymeleafTemplateEngine());
         

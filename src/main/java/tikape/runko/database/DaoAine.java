@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tikape.runko.database;
 
 import java.sql.Connection;
@@ -41,7 +36,6 @@ public class DaoAine implements Dao<Aine, Integer>{
         connection.close();
         
         return aine;
-        
     }
     
         public List<Aine> findMany(Integer key) throws SQLException {
@@ -59,18 +53,12 @@ public class DaoAine implements Dao<Aine, Integer>{
             String nimi = rs.getString("nimi");
             aineet.add(new Aine(id, nimi));
         }
-        
-        
-        
-        
         rs.close();
         statement.close();
         connection.close();
         
-        return aineet;
-        
+        return aineet;        
     }
-    
 
     @Override
     public List<Aine> findAll() throws SQLException {
@@ -78,18 +66,14 @@ public class DaoAine implements Dao<Aine, Integer>{
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM RaakaAine");
         ResultSet rs = statement.executeQuery();
         List<Aine> aineet = new ArrayList<>();
-        if(!rs.next()) {
-            return null;
-        }
-        
+
         while(rs.next()) {
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
             Aine aine = new Aine(id, nimi);
             aineet.add(aine);
-            
-            
         }
+        
         rs.close();
         statement.close();
         connection.close();
@@ -102,9 +86,7 @@ public class DaoAine implements Dao<Aine, Integer>{
         statement.setString(1, nimi);
         statement.executeUpdate();
         statement.close();
-        connection.close();
-
-        
+        connection.close();       
     }
 
     @Override

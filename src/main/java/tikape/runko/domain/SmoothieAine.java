@@ -3,7 +3,6 @@ package tikape.runko.domain;
 
 
 public class SmoothieAine {
-    Integer id;
     Integer smoothieId;
     Integer aineId;
     Integer jarjestys;
@@ -11,18 +10,13 @@ public class SmoothieAine {
     String ohje;
     
 
-    public SmoothieAine(Integer id, Integer aineId, Integer smoothieId, Integer jarjestys, String maara, String ohje) {
-        this.id = id;
+    public SmoothieAine(Integer aineId, Integer smoothieId, Integer jarjestys, String maara, String ohje) {
         this.aineId = aineId;
         this.smoothieId = smoothieId;
         
         this.jarjestys = jarjestys;
         this.maara = maara;
         this.ohje = ohje;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public void setSmoothieId(Integer smoothieId) {
@@ -45,10 +39,6 @@ public class SmoothieAine {
         this.ohje = ohje;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public Integer getSmoothieId() {
         return smoothieId;
     }
@@ -68,6 +58,5 @@ public class SmoothieAine {
     public String getOhje() {
         return ohje;
     }
-            
-            
+                       
 }

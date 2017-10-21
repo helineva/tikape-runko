@@ -29,14 +29,13 @@ public class DaoSmoothieAine implements Dao<SmoothieAine, Integer>  {
         ArrayList<SmoothieAine> lista = new ArrayList<>();
         
         while (rs.next()) {
-            Integer id = rs.getInt("id");
             Integer aineId = rs.getInt("aine_id");
             Integer smoothie_Id = rs.getInt("smoothie_id");
             Integer jarjestys = rs.getInt("jarjestys");
             String maara = rs.getString("maara");
             String ohje = rs.getString("ohje");
             
-            lista.add(new SmoothieAine(id, aineId, smoothie_Id, jarjestys, maara, ohje));
+            lista.add(new SmoothieAine(aineId, smoothie_Id, jarjestys, maara, ohje));
         }
         
         rs.close();
@@ -66,9 +65,7 @@ public class DaoSmoothieAine implements Dao<SmoothieAine, Integer>  {
         statement.setString(5, ohje);
         statement.executeUpdate();
         statement.close();
-        connection.close();
-
-        
+        connection.close();        
     }
 
     @Override

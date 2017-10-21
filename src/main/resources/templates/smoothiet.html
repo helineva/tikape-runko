@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Smoothiet</title>
+        <title>Smoothieiden lisäys ja poistaminen</title>
         <meta charset="utf-8" />
     </head>
     <body>
         <h2>Smoothiet</h2>
             <ul>
             <li th:each="smoothie: ${smoothiet}">
-                <a th:href="${'/smoothiet/smoothie/' + smoothie.id}"> <span th:text="${smoothie.nimi}">smoothien nimi</span></a> <a th:href="${'/smoothiet/' + smoothie.id + '/poista'}">poista</a>
+                <span th:text="${smoothie.nimi}">smoothien nimi</span> <a th:href="${'/smoothiet/' + smoothie.id + '/poista'}">poista</a>
             </li>
         </ul>
         
@@ -46,5 +41,6 @@ and open the template in the editor.
             <input name="ohje" type="text" /><br/>
             <input type="submit" value="Lisää"/>
         </form>
+        <a href="/">Palaa aloitussivulle</a>
     </body>
 </html>

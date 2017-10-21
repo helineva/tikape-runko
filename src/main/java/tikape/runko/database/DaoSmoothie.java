@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tikape.runko.database;
 
 import java.sql.Connection;
@@ -19,9 +14,6 @@ public class DaoSmoothie implements Dao<Smoothie, Integer>  {
     public DaoSmoothie(Database database) {
         this.database = database;
     }
-    
-    
-    
 
     @Override
     public Smoothie findOne(Integer key) throws SQLException {
@@ -50,17 +42,12 @@ public class DaoSmoothie implements Dao<Smoothie, Integer>  {
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM Smoothie");
         ResultSet rs = statement.executeQuery();
         List<Smoothie> smoothiet = new ArrayList<>();
-        if(!rs.next()) {
-            return null;
-        }
         
         while(rs.next()) {
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
             Smoothie smoothie = new Smoothie(id, nimi);
-            smoothiet.add(smoothie);
-            
-            
+            smoothiet.add(smoothie);            
         }
         rs.close();
         statement.close();
@@ -74,9 +61,7 @@ public class DaoSmoothie implements Dao<Smoothie, Integer>  {
         statement.setString(1, nimi);
         statement.executeUpdate();
         statement.close();
-        connection.close();
-
-        
+        connection.close();        
     }
 
     @Override
@@ -89,7 +74,5 @@ public class DaoSmoothie implements Dao<Smoothie, Integer>  {
 
         stmt.close();
         conn.close();
-    }
-    
-    
+    }   
 }
