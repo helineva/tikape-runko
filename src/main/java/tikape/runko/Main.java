@@ -11,7 +11,6 @@ import tikape.runko.database.DaoAine;
 import tikape.runko.database.DaoSmoothie;
 import tikape.runko.database.DaoSmoothieAine;
 import tikape.runko.database.Database;
-import tikape.runko.database.OpiskelijaDao;
 import tikape.runko.domain.Smoothie;
 import tikape.runko.domain.SmoothieAine;
 
