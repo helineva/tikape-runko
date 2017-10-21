@@ -44,7 +44,7 @@ public class DaoSmoothieAine implements Dao<SmoothieAine, Integer>  {
         
         return lista;
     }
-
+    
     @Override
     public List<SmoothieAine> findAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -53,6 +53,21 @@ public class DaoSmoothieAine implements Dao<SmoothieAine, Integer>  {
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    // Jos aine == true, poistaa kaikki rivit, joilla aine_id == key. Muutoin poistaa kaikki rivit, joilla smoothie_id == key.
+    public void delete(Integer key, boolean aine) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt;
+        if (aine) {
+            stmt = conn.prepareStatement("DELETE FROM SmoothieAine WHERE aine_id = ?");
+        } else {
+            stmt = conn.prepareStatement("DELETE FROM SmoothieAine WHERE smoothie_id = ?");
+        }
+        stmt.setInt(1, key);
+        stmt.executeUpdate();
+        stmt.close();
+        conn.close();        
     }
     
     public void save(Integer aineId, Integer smoothieId, Integer jarjestys, String maara, String ohje) throws SQLException {

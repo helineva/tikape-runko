@@ -11,7 +11,7 @@
         
         <ul>
             <li th:each="aine: ${aineet}">
-                <span th:text="${aine.nimi}">raaka-aineen nimi</span> <a th:href="${'/aineet/' + aine.id + '/poista'}">poista</a>
+                <span th:text="${aine.nimi}">raaka-aineen nimi</span> <a th:href="${'/aineet/' + aine.id + '/poista'}">(poista)</a>
             </li>
         </ul>
         

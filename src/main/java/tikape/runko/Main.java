@@ -56,7 +56,9 @@ public class Main {
         });
         
         get("/aineet/:id/poista", (req, res) -> {
-            daoAine.delete(Integer.parseInt(req.params(":id")));
+            Integer aineId = Integer.parseInt(req.params(":id"));
+            daoAine.delete(aineId);
+            daoSmoothieAine.delete(aineId, true);
             res.redirect("/aineet");
             return "";
         });
@@ -80,7 +82,9 @@ public class Main {
         });
         
         get("/smoothiet/:id/poista", (req, res) -> {
-            daoSmoothie.delete(Integer.parseInt(req.params(":id")));
+            Integer smoothieId = Integer.parseInt(req.params(":id"));
+            daoSmoothie.delete(smoothieId);
+            daoSmoothieAine.delete(smoothieId, false);
             res.redirect("/smoothiet");
             return "";
         });
